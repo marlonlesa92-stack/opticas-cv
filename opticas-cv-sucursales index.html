@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ópticas CV+ | Sucursales</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #1B4F8C;
+    --blue-dark: #0f3260;
+    --blue-light: #2563b0;
+    --orange: #F5A623;
+    --white: #ffffff;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-400: #9ca3af;
+    --gray-600: #4b5563;
+    --gray-800: #1f2937;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: #ffffff;
+    color: var(--gray-800);
+    min-height: 100vh;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* HERO */
+  .hero {
+    background: #fff;
+    padding: 44px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+  .eye-circle {
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue-light), var(--blue-dark));
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 32px rgba(27,79,140,0.25);
+    position: relative;
+  }
+  .eye-circle::before {
+    content: '';
+    position: absolute;
+    width: 108px; height: 108px;
+    border-radius: 50%;
+    border: 2px solid rgba(27,79,140,0.10);
+  }
+  .eye-circle svg { width: 46px; height: 46px; }
+
+  .brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gray-800);
+    text-align: center;
+  }
+  .brand-name em { color: var(--blue); font-style: italic; }
+  .brand-plus { color: var(--orange); }
+  .brand-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    text-align: center;
+  }
+
+  /* INTRO */
+  .intro-box {
+    margin: 0 20px 22px;
+    background: var(--gray-50);
+    border: 1.5px solid var(--gray-200);
+    border-radius: 18px;
+    padding: 18px 20px;
+    text-align: center;
+    font-size: 13.5px;
+    color: var(--gray-600);
+    line-height: 1.7;
+  }
+  .intro-box strong { color: var(--blue); font-weight: 700; }
+
+  /* SAC */
+  .sac-bar {
+    margin: 0 20px 28px;
+    background: linear-gradient(90deg, #25D366, #128C7E);
+    border-radius: 16px;
+    padding: 13px 16px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+  }
+  .sac-emoji { font-size: 24px; }
+  .sac-text { flex: 1; }
+  .sac-title { font-weight: 700; color: white; font-size: 12.5px; }
+  .sac-sub { font-size: 10.5px; color: rgba(255,255,255,0.8); margin-top: 2px; }
+  .sac-btn {
+    background: white; color: #128C7E;
+    border-radius: 10px; padding: 7px 13px;
+    font-weight: 700; font-size: 12px;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    white-space: nowrap;
+  }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-size: 10.5px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gray-400);
+    padding: 0 20px; margin-bottom: 12px;
+  }
+
+  /* DEPT GRID */
+  .dept-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 0 20px;
+    margin-bottom: 32px;
+  }
+  .dept-card {
+    background: var(--gray-50);
+    border: 1.5px solid var(--gray-200);
+    border-radius: 16px;
+    padding: 15px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+  .dept-card:hover, .dept-card:active {
+    border-color: var(--blue);
+    background: #eef4ff;
+    transform: scale(0.97);
+    box-shadow: 0 4px 16px rgba(27,79,140,0.12);
+  }
+
+  .dept-emoji { font-size: 24px; flex-shrink: 0; }
+  .dept-info { flex: 1; min-width: 0; }
+  .dept-name { font-size: 12.5px; font-weight: 700; color: var(--gray-800); line-height: 1.25; }
+  .dept-count {
+    display: inline-block;
+    background: var(--blue);
+    color: white;
+    border-radius: 20px;
+    padding: 2px 9px;
+    font-size: 10.5px;
+    font-weight: 700;
+    margin-top: 5px;
+  }
+
+  .dept-arrow { color: var(--blue); font-size: 18px; font-weight: 700; flex-shrink: 0; }
+
+  /* BACK */
+  .back-btn {
+    display: flex; align-items: center; gap: 7px;
+    margin: 16px 20px 18px;
+    background: var(--gray-100); border: none;
+    border-radius: 12px; padding: 11px 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px; font-weight: 700;
+    color: var(--blue); cursor: pointer;
+    transition: background 0.2s;
+  }
+  .back-btn:hover { background: var(--gray-200); }
+
+  /* DEPT RESULT HEADER */
+  .dept-result-header {
+    padding: 0 20px 18px;
+    border-bottom: 1px solid var(--gray-200);
+    margin-bottom: 18px;
+  }
+  .dept-result-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--gray-800); margin-bottom: 4px;
+  }
+  .dept-result-sub { font-size: 12.5px; color: var(--gray-400); font-weight: 500; }
+  .dept-result-sub span { color: var(--orange); font-weight: 700; }
+
+  /* BRANCH CARDS */
+  .branches-wrap {
+    padding: 0 20px;
+    display: flex; flex-direction: column;
+    gap: 13px; margin-bottom: 40px;
+  }
+  .branch-card {
+    background: white;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 18px;
+    padding: 18px 18px 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    animation: slideUp 0.3s ease both;
+    position: relative; overflow: hidden;
+  }
+  .branch-card::before {
+    content: '';
+    position: absolute; left: 0; top: 0;
+    width: 4px; height: 100%;
+    background: linear-gradient(to bottom, var(--blue), var(--orange));
+    border-radius: 4px 0 0 4px;
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .branch-name {
+    font-size: 14.5px; font-weight: 800;
+    color: var(--blue-dark);
+    margin-bottom: 12px; padding-left: 6px;
+  }
+  .info-list {
+    display: flex; flex-direction: column;
+    gap: 7px; padding-left: 6px; margin-bottom: 14px;
+  }
+  .info-row {
+    display: flex; gap: 8px; align-items: flex-start;
+    font-size: 12px; color: var(--gray-600); line-height: 1.5;
+  }
+  .info-icon { flex-shrink: 0; font-size: 13px; margin-top: 1px; }
+  .branch-btns {
+    display: flex; gap: 8px; padding-left: 6px;
+  }
+  .btn-maps, .btn-wa {
+    flex: 1; border-radius: 11px; padding: 10px 8px;
+    font-size: 12px; font-weight: 700;
+    text-align: center; text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    display: flex; align-items: center;
+    justify-content: center; gap: 5px;
+    transition: opacity 0.2s;
+  }
+  .btn-maps { background: var(--blue); color: white; }
+  .btn-maps:hover { opacity: 0.88; }
+  .btn-wa { background: #25D366; color: white; }
+  .btn-wa:hover { opacity: 0.88; }
+
+  /* EMPTY */
+  .empty-state {
+    text-align: center; padding: 40px 20px;
+    color: var(--gray-400);
+  }
+  .empty-state .big { font-size: 48px; margin-bottom: 12px; }
+  .empty-state p { font-size: 14px; margin-bottom: 20px; line-height: 1.6; }
+  .empty-state a {
+    background: #25D366; color: white;
+    padding: 10px 22px; border-radius: 12px;
+    text-decoration: none; font-weight: 700;
+    font-size: 13px; font-family: 'Montserrat', sans-serif;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--gray-50);
+    border-top: 1px solid var(--gray-200);
+    padding: 18px; text-align: center;
+    font-size: 11px; color: var(--gray-400); font-weight: 500;
+  }
+  footer a { color: var(--blue); text-decoration: none; font-weight: 700; }
+
+  .view { display: none; }
+  .view.active { display: block; }
+</style>
+</head>
+<body>
+
+<!-- HOME VIEW -->
+<div class="view active" id="viewHome">
+  <div class="hero">
+    <div class="eye-circle">
+      <svg viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="23" cy="23" rx="17" ry="11" stroke="white" stroke-width="2.5"/>
+        <circle cx="23" cy="23" r="5.5" fill="white"/>
+        <circle cx="25" cy="21" r="2" fill="rgba(27,79,140,0.5)"/>
+      </svg>
+    </div>
+    <div class="brand-name">Ópticas <em>CV<span class="brand-plus">+</span></em></div>
+    <div class="brand-tag">Encuentra tu sucursal más cercana</div>
+  </div>
+
+  <div class="intro-box">
+    Selecciona tu <strong>departamento</strong> y te mostramos todas las sucursales disponibles con horarios y acceso directo por WhatsApp. 👇
+  </div>
+
+  <div class="sac-bar">
+    <div class="sac-emoji">💬</div>
+    <div class="sac-text">
+      <div class="sac-title">Atención al Cliente (SAC)</div>
+      <div class="sac-sub">Lun–Vie 8am–5pm · Sáb 8am–4pm · Dom 10:30am–3:30pm</div>
+    </div>
+    <a href="https://wa.me/50377360534" target="_blank" class="sac-btn">WhatsApp</a>
+  </div>
+
+  <div class="section-label">¿En qué departamento estás?</div>
+  <div class="dept-grid" id="deptGrid"></div>
+</div>
+
+<!-- BRANCHES VIEW -->
+<div class="view" id="viewBranches">
+  <button class="back-btn" onclick="goHome()">← Volver</button>
+  <div class="dept-result-header">
+    <div class="dept-result-name" id="deptTitle"></div>
+    <div class="dept-result-sub">Se encontraron <span id="deptCount">0</span> sucursales cerca de ti</div>
+  </div>
+  <div class="branches-wrap" id="branchesWrap"></div>
+</div>
+
+<footer>
+  © 2025 <a href="https://wa.me/50377360534">Ópticas CV+</a> · Visión sin obstáculos
+</footer>
+
+<script>
+const branches = [
+  { name:"Encuentro Santa Ana", dept:"Santa Ana", address:"El Encuentro Santa Ana, Bypass hacia Metapán CA 12N", hours:"Lun–Vie 10am–7pm · Sáb 9am–7pm · Dom 10am–5pm", wa:"50369694046", maps:"https://www.google.com/maps?q=14.000253213426747,-89.54201370646787" },
+  { name:"Metro Santa Ana", dept:"Santa Ana", address:"Metro Centro Santa Ana, local 120-B", hours:"Lun–Vie 9am–7pm · Sáb 9am–7pm · Dom 10am–5pm", wa:"50360195949", maps:"https://www.google.com/maps?q=13.977595138920613,-89.562126773482" },
+  { name:"Ramblas Santa Ana", dept:"Santa Ana", address:"CC Las Ramblas, frente al redondel Santa María, local #26", hours:"Lun–Vie 10am–7pm · Sáb 9am–7pm · Dom 10am–5pm", wa:"50376474555", maps:"https://www.google.com/maps?q=13.986868889215511,-89.59598391944643" },
+  { name:"Acajutla", dept:"Sonsonate", address:"Av. Obando, Plaza Comercial Distrito Acajutla", hours:"Lun–Vie 10am–7pm · Sáb 9am–7pm · Dom 10am–5pm", wa:"50361784151", maps:"https://www.google.com/maps?q=13.589042188754469,-89.82088669851886" },
+  { name:"Metrocentro Sonsonate", dept:"Sonsonate", address:"Cjón. El Guayabo, Sonsonate 2301", hours:"Lun–Vie 10am–7pm · Sáb 9am–7pm · Dom 10am–5pm", wa:"50360176274", maps:"https://www.google.com/maps?q=13.712284019149852,-89.72507528738198" },
+  { name:"Encuentro Armenia", dept:"Sonsonate", address:"CC El Encuentro Armenia, Sonsonate", hours:"Lun–Vie 10am–7pm · Sáb 9am–7pm · Dom 10am–5pm", wa:"50369865402", maps:"https://www.google.com/maps?q=13.75368427016958,-89.49036750791481" },
+  { name:"Zaragoza", dept:"La Libertad", address:"Km 20 carretera al Puerto La Libertad, Distrito Zaragoza", hours:"Lun–Vie 10am–7pm · Sáb 9am–7pm · Dom 10am–5pm", wa:"50378705057", maps:"https://www.google.com/maps?q=13.591868740744165,-89.2866642807021" },
+  { name:"Encuentro La Libertad", dept:"La Libertad", address:"Km 38, CC El Encuentro, CA-2, La Libertad", hours:"Lun–Vie 9am–6pm · Sáb 9am–6pm · Dom 10am–5pm", wa:"50372018572", maps:"https://www.google.com/maps?q=13.489876760024423,-89.34976573552322" },
+  { name:"Santa Rosa", dept:"La Libertad", address:"Calle Real, local 47, CC Santa Rosa", hours:"Lun–Vie 10am–7pm · Sáb 9am–7pm · Dom 10am–5pm", wa:"50374947537", maps:"https://www.google.com/maps?q=13.678638586502423,-89.30063311131676" },
+  { name:"Multiplaza", dept:"La Libertad", address:"Carr. Panamericana 503, San Salvador 1501", hours:"Lun–Vie 10am–8pm · Sáb 10am–8pm · Dom 10am–7pm", wa:"50375155723", maps:"https://www.google.com/maps?q=13.67930543555334,-89.2490051284695" },
+  { name:"Metrocentro Lourdes", dept:"La Libertad", address:"Metrocentro Lourdes, Carretera Panamericana, Lourdes", hours:"Lun–Vie 10am–7pm · Sáb 9am–7pm · Dom 10am–5pm", wa:"50372914225", maps:"https://www.google.com/maps?q=13.726859621972642,-89.35886465480706" },
+  { name:"Encuentro Lourdes", dept:"La Libertad", address:"Cantón Las Angosturas, Km 24½ carretera a Santa Ana", hours:"Lun–Vie 9am–7pm · Sáb 9am–7pm · Dom 10am–5pm", wa:"50360551854", maps:"https://www.google.com/maps?q=13.736518358355573,-89.35993660460458" },
+  { name:"Estación El Casco", dept:"La Libertad", address:"CC Estación del Casco, C. El Pedregal Final, Ciudad Merliot", hours:"Lun–Vie 10am–7pm · Sáb 9am–7pm · Dom 10am–5pm", wa:"50375349522", maps:"https://www.google.com/maps?q=13.684835914845522,-89.24606430761393" },
+  { name:"Zona Rosa", dept:"San Salvador", address:"Bulevar Del Hipódromo, San Salvador", hours:"Lun–Vie 10am–7pm · Sáb 9am–7pm · Dom 10am–5pm", wa:"50378705057", maps:"https://www.google.com/maps?q=13.689774744477115,-89.24043525912093" },
+  { name:"El Paseo", dept:"San Salvador", address:"Av. El Paseo Gral. Escalón, San Salvador", hours:"Lun–Vie 10am–7pm · Sáb 9am–7pm · Dom 10am–5pm", wa:"50372879265", maps:"https://www.google.com/maps?q=13.701783248190083,-89.2353106981831" },
+  { name:"Galerías", dept:"San Salvador", address:"Paseo Gral. Escalón 3700, CC Galerías 3er nivel", hours:"Lun–Vie 10am–7pm · Sáb 9am–7pm · Dom 10am–5pm", wa:"50372547998", maps:"https://www.google.com/maps?q=13.702219130201891,-89.22993116287893" },
+  { name:"Metrocentro 7ma Etapa", dept:"San Salvador", address:"Blvd. de Los Héroes, Col. Miramonte, Metro 7ma etapa 203-P", hours:"Lun–Vie 10am–7pm · Sáb 9am–7pm · Dom 10am–5pm", wa:"50378960067", maps:"https://www.google.com/maps?q=13.704827711278503,-89.21144486272587" },
+  { name:"Metrocentro 6ta Etapa", dept:"San Salvador", address:"CC Metrocentro San Salvador, 6ta etapa", hours:"Lun–Vie 10am–7pm · Sáb 9am–7pm · Dom 10am–5pm", wa:"50376095273", maps:"https://www.google.com/maps?q=13.706783667674879,-89.21195927100378" },
+  { name:"Unicentro Metrópolis", dept:"San Salvador", address:"CC Unicentro Metrópolis local 11, Mejicanos", hours:"Lun–Vie 10am–7pm · Sáb 9am–7pm · Dom 10am–5pm", wa:"50379413864", maps:"https://www.google.com/maps?q=13.729553982458036,-89.2101588259197" },
+  { name:"Mall San Gabriel", dept:"San Salvador", address:"CC Mall San Gabriel, local F3, 1er nivel", hours:"Lun–Jue 11am–7pm · Vie–Sáb 10am–7pm · Dom 10am–5pm", wa:"50379174811", maps:"https://www.google.com/maps?q=13.79512632298329,-89.2252987052019" },
+  { name:"Valle Dulce", dept:"San Salvador", address:"CC El Encuentro Valle Dulce, local #8, Apopa", hours:"Lun–Vie 10am–7pm · Sáb 9am–7pm · Dom 10am–5pm", wa:"50374545887", maps:"https://www.google.com/maps?q=13.787259907239159,-89.19558977369093" },
+  { name:"Plaza Mundo Apopa", dept:"San Salvador", address:"Carr. Troncal del Norte km 12, Plaza Mundo Apopa", hours:"Lun–Vie 9am–7pm · Sáb 9am–7pm · Dom 10am–5pm", wa:"50377430119", maps:"https://www.google.com/maps?q=13.790325043792695,-89.17593652325763" },
+  { name:"Encuentro Aguilares", dept:"San Salvador", address:"Carretera troncal del norte, CC El Encuentro Aguilares", hours:"Lun–Vie 10am–7pm · Sáb 9am–7pm · Dom 10am–5pm", wa:"50375028550", maps:"https://www.google.com/maps?q=13.960120403635365,-89.18302044213652" },
+  { name:"Unicentro Soyapango", dept:"San Salvador", address:"Unicentro Soyapango, local 53C", hours:"Lun–Vie 10am–7pm · Sáb 9am–7pm · Dom 10am–5pm", wa:"50375572464", maps:"https://www.google.com/maps?q=13.714848486903733,-89.14106673301167" },
+  { name:"Plaza Mundo Soyapango", dept:"San Salvador", address:"Blvd. del Ejército km 4, Soyapango", hours:"Lun–Vie 9am–7pm · Sáb 9am–7pm · Dom 10am–5pm", wa:"50379702791", maps:"https://www.google.com/maps?q=13.699158458437536,-89.14985945339481" },
+  { name:"Unicentro Altavista", dept:"San Salvador", address:"CC Unicentro Altavista, Autopista de Oro, Ilopango", hours:"Lun–Vie 10am–7pm · Sáb 9am–7pm · Dom 10am–5pm", wa:"50372143640", maps:"https://www.google.com/maps?q=13.716681609905498,-89.09758182861437" },
+  { name:"Encuentro San Martín", dept:"San Salvador", address:"Carr. Panamericana km 14½, CC El Encuentro San Martín, local #3", hours:"Lun–Vie 10am–7pm · Sáb 9am–7pm · Dom 10am–5pm", wa:"50369757320", maps:"https://www.google.com/maps?q=13.721652978476724,-89.06956959350019" },
+  { name:"Encuentro San Marcos", dept:"San Salvador", address:"Carr. Antigua a Zacatecoluca Km 4.5, CC El Encuentro San Marcos", hours:"Lun–Vie 10am–7pm · Sáb 9am–7pm · Dom 10am–5pm", wa:"50375591662", maps:"https://www.google.com/maps?q=13.662203636983183,-89.18404336912792" },
+  { name:"Encuentro Zacatecoluca", dept:"La Paz", address:"Carr. Antigua a Zacatecoluca Km 55.5", hours:"Lun–Vie 10am–7pm · Sáb 9am–7pm · Dom 10am–5pm", wa:"50360488451", maps:"https://www.google.com/maps?q=13.508535916681234,-88.88015148733278" },
+  { name:"Zacatecoluca Centro", dept:"La Paz", address:"Barrio el centro, Av. José Simeón Cañas local 1", hours:"Lun–Vie 8:30am–5:30pm · Sáb 8:30am–5:30pm · Dom 9am–1pm", wa:"50361975566", maps:"https://www.google.com/maps?q=13.508579705874194,-88.87101474654676" },
+  { name:"Plaza Mundo Usulután", dept:"Usulután", address:"Km 115 carr. Litoral, Plaza Mundo Usulután, local #139", hours:"Lun–Vie 9am–7pm · Sáb 9am–7pm · Dom 10am–5pm", wa:"50370209440", maps:"https://www.google.com/maps?q=13.343057737998821,-88.4667575842887" },
+  { name:"Encuentro El Sitio San Miguel", dept:"San Miguel", address:"Plaza Encuentro Sitio, San Miguel", hours:"Lun–Vie 10am–7pm · Sáb 9am–7pm · Dom 10am–5pm", wa:"50372548166", maps:"https://www.google.com/maps?q=13.495979847057539,-88.19758238593643" },
+];
+
+const deptMeta = {
+  "San Salvador": "🏙️", "La Libertad": "🌊", "La Paz": "🕊️",
+  "San Miguel": "🦅", "Santa Ana": "⛪", "Sonsonate": "🌿", "Usulután": "☀️"
+};
+
+const countByDept = {};
+branches.forEach(b => { countByDept[b.dept] = (countByDept[b.dept] || 0) + 1; });
+
+const grid = document.getElementById('deptGrid');
+Object.entries(deptMeta).forEach(([name, emoji]) => {
+  const count = countByDept[name] || 0;
+  if (!count) return;
+  const card = document.createElement('div');
+  card.className = 'dept-card';
+  card.innerHTML = `
+    <div class="dept-emoji">${emoji}</div>
+    <div class="dept-info">
+      <div class="dept-name">${name}</div>
+      <div class="dept-count">${count} ${count === 1 ? 'sucursal' : 'sucursales'}</div>
+    </div>
+    <div class="dept-arrow">›</div>
+  `;
+  card.onclick = () => showDept(name, emoji);
+  grid.appendChild(card);
+});
+
+function showDept(dept, emoji) {
+  const list = branches.filter(b => b.dept === dept);
+  document.getElementById('deptTitle').textContent = emoji + ' ' + dept;
+  document.getElementById('deptCount').textContent = list.length;
+  document.getElementById('branchesWrap').innerHTML = list.map((b, i) => `
+    <div class="branch-card" style="animation-delay:${i*55}ms">
+      <div class="branch-name">👓 ${b.name}</div>
+      <div class="info-list">
+        <div class="info-row"><span class="info-icon">🏬</span><span>${b.address}</span></div>
+        <div class="info-row"><span class="info-icon">🕘</span><span>${b.hours}</span></div>
+      </div>
+      <div class="branch-btns">
+        <a href="${b.maps}" target="_blank" class="btn-maps">📍 Ver mapa</a>
+        <a href="https://wa.me/${b.wa}" target="_blank" class="btn-wa">💬 WhatsApp</a>
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('viewHome').classList.remove('active');
+  document.getElementById('viewBranches').classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function goHome() {
+  document.getElementById('viewBranches').classList.remove('active');
+  document.getElementById('viewHome').classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+</script>
+</body>
+</html>
